@@ -2,27 +2,38 @@ import './style.css'
 import * as THREE from 'three'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 
-//starting of the real coding //
-//creating a canvas to pull all the stuff init
+
+///////////////////////////////// creating canvas and scene and appending canvas to the body ///////////////////////////////////
 const canvas=document.createElement('canvas');
-//appending canvas to the document 
 document.body.append(canvas);
-
-
-
-///here comes the real shit 
 const scene=new THREE.Scene()
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+//////////////////////////////////////////////////objects for measurements ////////////////////////////////////////////////////
 const sizes={
     width:window.innerWidth,
     height:window.innerHeight
 }
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////geometry and objects//////////////////////////////////////////////////////////
 const geometry=new THREE.BoxGeometry(1,1,1)
 const material=new THREE.MeshBasicMaterial({color:'red',wireframe:true})
 const mesh=new THREE.Mesh(geometry,material)
 scene.add(mesh)
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+//////////////////////////////////creating camera and adding it to scene////////////////////////////////////////////////////////
 const camera=new THREE.PerspectiveCamera(75,sizes.width/sizes.height,0.1,100)
 camera.position.z=3
 scene.add(camera)
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+//////////////////////////////////////resizing and full screen/////////////////////////////////////////////////////////////////
 window.addEventListener('resize',()=>{
     sizes.width=window.innerWidth
     sizes.height=window.innerHeight
@@ -41,35 +52,17 @@ const tick= ()=>{
     window.requestAnimationFrame(tick)
 }
 tick()
-
-console.log(document.fullscreenElement)
 window.addEventListener('dblclick', () =>
 {
-    const fullscreenElement = document.fullscreenElement || document.webkitFullscreenElement
-
+    const fullscreenElement = document.fullscreenElement 
     if(!fullscreenElement)
     {
-        if(canvas.requestFullscreen)
-        {
-            canvas.requestFullscreen()
-        }
-        else if(canvas.webkitRequestFullscreen)
-        {
-            canvas.webkitRequestFullscreen()
-        }
+    canvas.requestFullscreen() 
     }
     else
-    {
-        if(document.exitFullscreen)
-        {
-            document.exitFullscreen()
-        }
-        else if(document.webkitExitFullscreen)
-        {
-            document.webkitExitFullscreen()
-        }
+    {  
+    document.exitFullscreen()
     }
 })
-
-
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
