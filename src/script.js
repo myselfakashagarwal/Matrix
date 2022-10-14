@@ -3,10 +3,14 @@ import * as THREE from 'three'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 
 //starting of the real coding //
-
+//creating a canvas to pull all the stuff init
 const canvas=document.createElement('canvas');
+//appending canvas to the document 
 document.body.append(canvas);
 
+
+
+///here comes the real shit 
 const scene=new THREE.Scene()
 const sizes={
     width:window.innerWidth,
