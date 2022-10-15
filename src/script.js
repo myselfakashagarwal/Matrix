@@ -1,6 +1,7 @@
 import './style.css'
 import * as THREE from 'three'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
+import { Scene } from 'three';
 
 
 ///////////////////////////////// creating canvas and scene and appending canvas to the body ///////////////////////////////////
@@ -19,16 +20,21 @@ const sizes={
 
 
 /////////////////////////////////////////////////geometry and objects//////////////////////////////////////////////////////////
-const geometry=new THREE.BoxGeometry(1,1,1)
-const material=new THREE.MeshBasicMaterial({color:'red',wireframe:true})
-const mesh=new THREE.Mesh(geometry,material)
-scene.add(mesh)
+//adding plane 
+const home_room_geometry=new THREE.BoxBufferGeometry(100,5,100)
+const home_room_material=new THREE.MeshNormalMaterial()
+home_room_material.side=THREE.DoubleSide
+const home_room=new THREE.Mesh(home_room_geometry,home_room_material)
+home_room.position.y=-10
+home_room.rotation.y=-7
+home_room.rotation.x=-3
+scene.add(home_room)
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
 //////////////////////////////////creating camera and adding it to scene////////////////////////////////////////////////////////
-const camera=new THREE.PerspectiveCamera(75,sizes.width/sizes.height,0.1,100)
-camera.position.z=3
+const camera=new THREE.PerspectiveCamera(75,sizes.width/sizes.height,0.01,1000)
+camera.position.z=100
 scene.add(camera)
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
