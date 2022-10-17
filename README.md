@@ -1,5 +1,7 @@
 # Three.js Journey
 
+## As per as now there's no need of of installing node.js because node modules are already been pushed 
+
 ## Setup
 Download [Node.js](https://nodejs.org/en/download/).
 Run this followed commands:
