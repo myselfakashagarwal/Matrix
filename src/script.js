@@ -22,6 +22,8 @@ const scene=new THREE.Scene()
 const gltf_loader=new GLTFLoader()
 //console.log(gltf_loader)
 
+
+//matrix tv
 gltf_loader.load(
 
 './test/scene.gltf',
@@ -31,14 +33,35 @@ gltf_loader.load(
     const object=gltf.scene
     object.castShadow='true'
     object.rotation.y=Math.PI/2
-   object.position.y=4
-   object.rotation.y=6
+   object.position.y=2
+   object.rotation.y=6.3
    object.position.z=-3
-   object.scale.set(0.0006,0.0006,0.0006)
+   object.scale.set(0.0004,0.0004,0.0004)
     scene.add(object)
 }
-
 )
+
+//matrix chair 
+gltf_loader.load(
+
+    './test2/scene.gltf',
+    
+    
+    (gltf)=>{
+        const object=gltf.scene
+        object.castShadow='true'
+        object.rotation.y=Math.PI/2
+       object.position.y=-4
+       object.rotation.y=-0
+       object.position.z=8
+       object.rotation.z=0
+       object.scale.set(6,6,6)
+        scene.add(object)
+    }
+    
+    )
+
+
 
 
 const texture_loader=new THREE.TextureLoader()
@@ -48,14 +71,14 @@ const home_env_texture=texture_loader.load('/textures/home_env_texture2.jpg')
 
 
 ///////////////////////////////////////LIGHTS STUFF////////////////////////////////////////////////////////////////////////
-const ambient_light=new THREE.AmbientLight('white',1)
-//scene.add(ambient_light);
+const ambient_light=new THREE.AmbientLight('white',0.4)
+scene.add(ambient_light);
 
 const point_light=new THREE.PointLight('white',0.8)
 scene.add(point_light)
 point_light.position.y=20
 
-const point_light2=new THREE.PointLight('#7C63AF',1)
+const point_light2=new THREE.PointLight('#7C63AF',0.8)
 scene.add(point_light2)
 point_light2.position.y=30
 point_light2.rotation.y=Math.PI/3
@@ -65,10 +88,15 @@ scene.add(point_light3)
 point_light3.position.y=5
 ///point_light3.rotation.y=Math.PI/3
 
-const point_light4=new THREE.PointLight('white',1)
+const point_light4=new THREE.PointLight('white',0.6)
 scene.add(point_light4)
-point_light4.position.y=-10
+point_light4.position.y=5
 
+
+const point_light5=new THREE.PointLight('white',0.4)
+scene.add(point_light5)
+point_light5.position.y=7
+point_light5.position.z=50
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 //////////////////////////////////////////////////objects for measurements ////////////////////////////////////////////////////
