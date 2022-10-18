@@ -29,6 +29,7 @@ gltf_loader.load(
 
 (gltf)=>{
     const object=gltf.scene
+    object.castShadow='true'
     object.rotation.y=Math.PI/2
    object.position.y=4
    object.rotation.y=6
@@ -41,7 +42,7 @@ gltf_loader.load(
 
 
 const texture_loader=new THREE.TextureLoader()
-const home_env_texture=texture_loader.load()
+const home_env_texture=texture_loader.load('/textures/home_env_texture2.jpg')
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -50,9 +51,23 @@ const home_env_texture=texture_loader.load()
 const ambient_light=new THREE.AmbientLight('white',1)
 //scene.add(ambient_light);
 
-const hemisphere_light=new THREE.HemisphereLight('purple','yellow',1)
-scene.add(hemisphere_light)
-hemisphere_light.position.y=40
+const point_light=new THREE.PointLight('white',0.8)
+scene.add(point_light)
+point_light.position.y=20
+
+const point_light2=new THREE.PointLight('#7C63AF',1)
+scene.add(point_light2)
+point_light2.position.y=30
+point_light2.rotation.y=Math.PI/3
+
+const point_light3=new THREE.PointLight('#6377AF',0.4)
+scene.add(point_light3)
+point_light3.position.y=5
+///point_light3.rotation.y=Math.PI/3
+
+const point_light4=new THREE.PointLight('white',1)
+scene.add(point_light4)
+point_light4.position.y=-10
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -66,15 +81,20 @@ const sizes={
 
 /////////////////////////////////////////////////geometry ////////////////////////////////////////////////////////////////////
 //adding plane 
-const home_room_geometry=new THREE.BoxBufferGeometry(20,1,20)
-const home_room_material=new THREE.MeshStandardMaterial()
+const home_room_geometry=new THREE.BoxBufferGeometry(20,0.5,20)
+const home_room_material=new THREE.MeshStandardMaterial({map:home_env_texture})
+home_room_material.metalness=0.7
+home_room_material.roughness=0.4
 home_room_material.side=THREE.DoubleSide
 const home_room=new THREE.Mesh(home_room_geometry,home_room_material)
 home_room.position.y=-3
 home_room.rotation.y=-7
 home_room.rotation.x=-3
 scene.add(home_room)
+home_room.receiveShadow=true
 
+
+//bcakground 
 const home_env_geometry=new THREE.BoxBufferGeometry(69,69,69,2,2,2)
 const home_env_material=new THREE.MeshBasicMaterial({color:'white',wireframe:true})
 home_env_material.side=THREE.DoubleSide
