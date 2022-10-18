@@ -58,7 +58,6 @@ gltf_loader.load(
        object.scale.set(6,6,6)
         scene.add(object)
     }
-    
     )
 
 
@@ -71,7 +70,7 @@ const home_env_texture=texture_loader.load('/textures/home_env_texture2.jpg')
 
 
 ///////////////////////////////////////LIGHTS STUFF////////////////////////////////////////////////////////////////////////
-const ambient_light=new THREE.AmbientLight('white',0.4)
+const ambient_light=new THREE.AmbientLight('grey',0.4)
 scene.add(ambient_light);
 
 const point_light=new THREE.PointLight('white',0.8)
@@ -83,20 +82,15 @@ scene.add(point_light2)
 point_light2.position.y=30
 point_light2.rotation.y=Math.PI/3
 
-const point_light3=new THREE.PointLight('#6377AF',0.4)
-scene.add(point_light3)
-point_light3.position.y=5
-///point_light3.rotation.y=Math.PI/3
+//blueloght from z+
+const point_light3=new THREE.PointLight('red',1)
+point_light3.position.z=30
+scene.add(point_light3);
 
-const point_light4=new THREE.PointLight('white',0.6)
-scene.add(point_light4)
-point_light4.position.y=5
-
-
-const point_light5=new THREE.PointLight('white',0.4)
-scene.add(point_light5)
-point_light5.position.y=7
-point_light5.position.z=50
+//red light from z-
+const point_light4=new THREE.PointLight('blue',2)
+point_light4.position.z=2
+scene.add(point_light4);
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 //////////////////////////////////////////////////objects for measurements ////////////////////////////////////////////////////
