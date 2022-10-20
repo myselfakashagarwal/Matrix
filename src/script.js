@@ -1,7 +1,7 @@
 import './style.css'
 import * as THREE from 'three'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
-import { Scene } from 'three';
+import { Scene, VideoTexture } from 'three';
 import {GLTFLoader} from 'three/examples/jsm/loaders/GLTFLoader.js'
 
 
@@ -66,6 +66,8 @@ gltf_loader.load(
 const texture_loader=new THREE.TextureLoader()
 const home_env_texture=texture_loader.load('/textures/home_env_texture2.jpg')
 
+
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
@@ -88,7 +90,7 @@ point_light3.position.z=30
 scene.add(point_light3);
 
 //red light from z-
-const point_light4=new THREE.PointLight('blue',2)
+const point_light4=new THREE.PointLight('blue',2.5)
 point_light4.position.z=2
 scene.add(point_light4);
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -122,6 +124,24 @@ const home_env_material=new THREE.MeshBasicMaterial({color:'white',wireframe:tru
 home_env_material.side=THREE.DoubleSide
 const home_env=new THREE.Mesh(home_env_geometry,home_env_material)
 scene.add(home_env);
+
+
+//tv plane geometry
+const video=document.createElement('video');
+video.src="video2.mp4"
+video.loop=true
+video.play()
+const video_texture=new THREE.VideoTexture(video);
+video_texture.minFilter=THREE.LinearFilter
+video_texture.minFilter=THREE.LinearFilter
+
+const video_plane_geometry=new THREE.PlaneBufferGeometry(2.63,2.7);
+const video_plane_matrial=new THREE.MeshBasicMaterial({map:video_texture})
+const video_plane=new THREE.Mesh(video_plane_geometry,video_plane_matrial)
+scene.add(video_plane);
+video_plane.position.y=2
+video_plane.position.z=-2.01
+video_plane.position.x=0.03
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
@@ -183,7 +203,11 @@ BIN contains like data geometry uv coordinates colors etc
 other files are just textures 
 
 
-
-
-
 */
+///have a seat matrix appeal 
+
+
+
+
+
+
