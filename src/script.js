@@ -13,7 +13,7 @@ import {GLTFLoader} from 'three/examples/jsm/loaders/GLTFLoader.js'
 
 ///////////////////////////////// creating canvas and scene and appending canvas to the body ///////////////////////////////////
 const canvas=document.createElement('canvas');
-document.body.append(canvas);
+document.body.append(canvas)
 const scene=new THREE.Scene()
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -85,12 +85,12 @@ point_light2.position.y=30
 point_light2.rotation.y=Math.PI/3
 
 //blueloght from z+
-const point_light3=new THREE.PointLight('red',1)
+const point_light3=new THREE.PointLight('red',3)
 point_light3.position.z=30
 scene.add(point_light3);
 
 //red light from z-
-const point_light4=new THREE.PointLight('blue',2.5)
+const point_light4=new THREE.PointLight('blue',6.5)
 point_light4.position.z=2
 scene.add(point_light4);
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -119,8 +119,8 @@ home_room.receiveShadow=true
 
 
 //bcakground 
-const home_env_geometry=new THREE.BoxBufferGeometry(69,69,69,2,2,2)
-const home_env_material=new THREE.MeshBasicMaterial({color:'white',wireframe:true})
+const home_env_geometry=new THREE.BoxBufferGeometry(69,69,69,4,4,4)
+const home_env_material=new THREE.MeshNormalMaterial({wireframe:true})
 home_env_material.side=THREE.DoubleSide
 const home_env=new THREE.Mesh(home_env_geometry,home_env_material)
 scene.add(home_env);
@@ -149,7 +149,7 @@ video_plane.position.x=0.03
 const camera=new THREE.PerspectiveCamera(75,sizes.width/sizes.height,0.01,1000)
 camera.position.z=25
 camera.position.y=3
-camera.rotation.y=-3
+camera.position.x=18
 scene.add(camera)
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -202,12 +202,39 @@ GLTF file contains scene camera and material
 BIN contains like data geometry uv coordinates colors etc
 other files are just textures 
 
-
-*/
 ///have a seat matrix appeal 
 
 
+creating group for taking a seat !
 
+this will include a square plane for face and a long planer for message last a small plane for choice which will be an eventlistner plane 
+NOTE:they are just for testing
 
+const logo_plane_geometry=new THREE.PlaneBufferGeometry(1,1)
+const logo_plane_material=new THREE.MeshBasicMaterial()
+logo_plane_material.side=THREE.DoubleSide
+const logo_plane=new THREE.Mesh(logo_plane_geometry,logo_plane_material)
+//scene.add(logo_plane)
 
+const message_plane_geometry=new THREE.PlaneBufferGeometry(4,1)
+const message_plane_material=new THREE.MeshBasicMaterial()
+message_plane_material.side=THREE.DoubleSide
+const message_plane=new THREE.Mesh(message_plane_geometry,message_plane_material)
+message_plane.position.x=3
+//scene.add(message_plane)
 
+const choice_plane_geometry=new THREE.PlaneBufferGeometry(1,1)
+const choice_plane_material=new THREE.MeshBasicMaterial()
+choice_plane_material.side=THREE.DoubleSide
+const choice_plane=new THREE.Mesh(choice_plane_geometry,choice_plane_material)
+choice_plane.position.x=6
+//scene.add(choice_plane)
+
+const group=new THREE.Group()
+group.add(logo_plane,message_plane,choice_plane)
+scene.add(group)
+group.position.x=-6
+group.position.y=-3
+group.position.z=15
+
+*/
